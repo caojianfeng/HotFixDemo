@@ -16,16 +16,24 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i(TAG, "onCreate");
         initHotfix();
     }
 
     private void initHotfix() {
+        Log.i(TAG, "initHotfix");
         App context = this;
         patchManager = new PatchManager(context);
         patchManager.init(BuildConfig.VERSION_NAME);//current version
         patchManager.loadPatch();
         File patchDir = new File(Environment.getExternalStorageDirectory(), "/com.caojianfeng/patchs");
         File[] subFile = patchDir.listFiles();
+
+        if (subFile == null) {
+            Log.e(TAG, "null subfiles on:" + patchDir.getAbsolutePath());
+            return;
+        }
+
         try {
             for (File file : subFile) {
                 String path = file.getAbsolutePath();
