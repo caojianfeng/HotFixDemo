@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String msg = "1/0=" + (1 / 0);
+        String msg = "分母不能为0" ;
+//        String msg = "1/0=" + (1 / 0);
         tvMsg.setText(msg);
     }
 }
